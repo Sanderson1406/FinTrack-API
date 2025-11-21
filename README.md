@@ -1,8 +1,8 @@
-# 💰 FinTrack API | Sistema de Acompanhamento Financeiro Pessoal
+# FinTrack API | Sistema de Acompanhamento Financeiro Pessoal
 
 Um robusto sistema de backend desenvolvido com **ASP.NET Core** que permite aos usuários gerenciar suas finanças pessoais, registrando transações, categorizando gastos e monitorando orçamentos. Este projeto visa demonstrar o domínio da stack .NET, implementação de APIs resilientes e a utilização de múltiplas tecnologias de persistência de dados, conforme as melhores práticas de desenvolvimento.
 
-## ✨ Destaques Técnicos e Pilares da Formação
+## Destaques Técnicos e Pilares da Formação
 
 Este projeto é uma prova da proficiência nos seguintes pilares cruciais da formação .NET Developer:
 
@@ -11,11 +11,11 @@ Este projeto é uma prova da proficiência nos seguintes pilares cruciais da for
 | **Backend Core** | ASP.NET Core 8.0, C\# | Criação de uma API RESTful de alta performance, seguindo o padrão REST. |
 | **POO & Arquitetura**| Padrão Repository, DTOs, Injeção de Dependência | Garantir um código modular, escalável e de fácil manutenção, aplicando conceitos sólidos de Orientação a Objetos. |
 | **Dados Relacionais**| SQL Server + Entity Framework Core | Usado para dados críticos (Transações, Orçamentos) que exigem **integridade transacional** e relacionamentos fortes. |
-| **Dados Não-Relacionais**| MongoDB | Utilizado para **logs de eventos** ou configurações do usuário, demonstrando flexibilidade na persistência de dados. |
+| **Dados Não-Relacionais**| **Azure Table Storage** | Utilizado para **logs de eventos** (chave-valor), demonstrando o uso de serviços nativos do Azure para persistência NoSQL. |
 | **Resiliência** | XUnit, Testes Unitários | Cobertura de testes nas regras de negócio (e.g., cálculo de saldo, validações) para garantir a confiabilidade. |
 | **Cloud (Opcional)**| Microsoft Azure App Services | Demonstração de habilidades em **Deploy, Hospedagem e Otimização** na nuvem. |
 
-## 🗺️ Endpoints Principais
+## Endpoints Principais
 
 A documentação da API está disponível via **Swagger UI** após a inicialização do projeto, facilitando a exploração dos endpoints.
 
@@ -27,7 +27,7 @@ A documentação da API está disponível via **Swagger UI** após a inicializa�
 | `/api/categories` | `POST`/`GET` | Gerencia as categorias financeiras e seus limites de orçamento. |
 | `/api/reports/balance` | `GET` | Retorna o saldo total atual e o saldo por categoria, demonstrando consultas avançadas com EF Core. |
 
-## 📐 Modelo de Dados (Entidades Chave)
+## Modelo de Dados (Entidades Chave)
 
 O projeto utiliza um design de dados híbrido para otimizar o desempenho e a integridade.
 
@@ -35,9 +35,9 @@ O projeto utiliza um design de dados híbrido para otimizar o desempenho e a int
 | :--- | :--- | :--- |
 | **Transaction** | SQL Server (EF Core) | Id, Description, Amount, Type (Income/Expense), Date, CategoryId |
 | **Category** | SQL Server (EF Core) | Id, Name, BudgetLimit |
-| **LogEntry** | MongoDB | Id, Timestamp, Action (e.g., 'TransactionCreated'), UserId, Payload |
+| **LogEntry** | **Azure Table Storage** | PartitionKey (e.g., UserId), RowKey (e.g., Timestamp), Action, Payload |
 
-## 📦 Estrutura do Projeto
+## Estrutura do Projeto
 
 A API é organizada usando uma arquitetura limpa, separando as responsabilidades em camadas para melhor manutenibilidade e testabilidade:
 
@@ -46,14 +46,14 @@ A API é organizada usando uma arquitetura limpa, separando as responsabilidades
 * `\src\FinTrack.Infrastructure`: A camada de persistência de dados (Contextos do EF Core, Repositórios SQL e MongoDB).
 * `\tests\FinTrack.UnitTests`: Projetos de testes unitários e de integração usando **XUnit**.
 
-## 🚀 Como Executar o Projeto Localmente
+## Como Executar o Projeto Localmente
 
 Para rodar a aplicação em sua máquina e replicar o ambiente, siga os passos abaixo:
 
 ### Pré-requisitos
 * [.NET 8 SDK](https://dotnet.microsoft.com/download)
 * SQL Server (Recomendado LocalDB ou Docker)
-* MongoDB (Local ou serviço cloud como MongoDB Atlas)
+* Azure Storage Emulator (Azutite) ou acesso a uma conta de Azure Storage.
 
 ### 1. Clonagem e Configuração
 ```bash
@@ -102,5 +102,4 @@ Esta seção demonstra o domínio do pilar Cloud Computing (Azure). O ambiente d
 
 ### Desenvolvido por: 
 Sanderson de Oliveira Machado
-### [LinkedIn](www.linkedin.com/in/sandersonomachado) 
-
+[LinkedIn](www.linkedin.com/in/sandersonomachado) 
