@@ -11,9 +11,9 @@ Este projeto é uma prova da proficiência nos seguintes pilares cruciais da for
 | **Backend Core** | ASP.NET Core 8.0, C\# | Criação de uma API RESTful de alta performance, seguindo o padrão REST. |
 | **POO & Arquitetura**| Padrão Repository, DTOs, Injeção de Dependência | Garantir um código modular, escalável e de fácil manutenção, aplicando conceitos sólidos de Orientação a Objetos. |
 | **Dados Relacionais**| SQL Server + Entity Framework Core | Usado para dados críticos (Transações, Orçamentos) que exigem **integridade transacional** e relacionamentos fortes. |
-| **Dados Não-Relacionais**| **Azure Table Storage** | Utilizado para **logs de eventos** (chave-valor), demonstrando o uso de serviços nativos do Azure para persistência NoSQL. |
+| **Dados Não-Relacionais**| Azure Table Storage | Utilizado para **logs de eventos** (chave-valor), demonstrando o uso de serviços nativos do Azure para persistência NoSQL. |
 | **Resiliência** | XUnit, Testes Unitários | Cobertura de testes nas regras de negócio (e.g., cálculo de saldo, validações) para garantir a confiabilidade. |
-| **Cloud (Opcional)**| Microsoft Azure App Services | Demonstração de habilidades em **Deploy, Hospedagem e Otimização** na nuvem. |
+| **Cloud**| Microsoft Azure App Services | Demonstração de habilidades em **Deploy, Hospedagem e Otimização** na nuvem. |
 
 ## Endpoints Principais
 
@@ -35,7 +35,7 @@ O projeto utiliza um design de dados híbrido para otimizar o desempenho e a int
 | :--- | :--- | :--- |
 | **Transaction** | SQL Server (EF Core) | Id, Description, Amount, Type (Income/Expense), Date, CategoryId |
 | **Category** | SQL Server (EF Core) | Id, Name, BudgetLimit |
-| **LogEntry** | **Azure Table Storage** | PartitionKey (e.g., UserId), RowKey (e.g., Timestamp), Action, Payload |
+| **LogEntry** | Azure Table Storage | PartitionKey (e.g., UserId), RowKey (e.g., Timestamp), Action, Payload |
 
 ## Estrutura do Projeto
 
@@ -78,7 +78,7 @@ dotnet run --project FinTrack.API
 
 A API estará acessível em https://localhost:5001 (ou na porta definida na sua configuração).
 
-## ✅ Validação e Resiliência (Testes Unitários)
+## Validação e Resiliência (Testes Unitários)
 
 A camada de testes unitários é o que garante a resiliência deste sistema financeiro. O foco é testar as regras de negócio críticas, validando o pilar de **Resiliência** da sua formação.
 
